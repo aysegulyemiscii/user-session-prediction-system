@@ -1,6 +1,6 @@
 <?php
-
 header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
 
 $apiUrl = 'http://case-test-api.humanas.io/';
 $response = file_get_contents($apiUrl);
@@ -29,7 +29,7 @@ function predictByAverageInterval($logins) {
     // Eğer sapma 1 saatten az ise %90 güven, daha fazlası ise %65 güven.
 
     $lastLogin = end($timestamps);
-    return [date('Y-m-d H:i:s', $lastLogin + $avg), $confidence];
+    return [date('Y-m-d H:i:s', round($lastLogin + $avg)), $confidence];
 }
 
 
@@ -90,7 +90,6 @@ foreach ($users as $user) {
     ];
 }
 
-header('Content-Type: application/json');
 echo json_encode($result, JSON_PRETTY_PRINT);
 
 ?>

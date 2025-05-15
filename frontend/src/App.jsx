@@ -18,7 +18,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/')
+    fetch('https://user-session-backend-us88.onrender.com/index.php')
       .then((res) => {
         if (!res.ok) throw new Error('Sunucu hatası');
         return res.json();
